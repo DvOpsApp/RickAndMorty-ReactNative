@@ -67,19 +67,15 @@ const App: () => React$Node = () => {
   };
 
   return (
-    <>
-      <SafeAreaView>
-        <View style={styles.body}>
-          <View>
-            <FlatList
-              data={characters}
-              renderItem={({item}) => renderItem(item, selectOfId)}
-              keyExtractor={(item) => item.id.toString()}
-            />
-          </View>
-        </View>
-      </SafeAreaView>
-    </>
+    <SafeAreaView>
+      <View style={styles.body}>
+        <FlatList
+          data={characters}
+          renderItem={({item}) => renderItem(item, selectOfId)}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 
