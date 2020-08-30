@@ -1,27 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import CharactersList from './components/CharactersList';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {SafeAreaView, StyleSheet, View, ActivityIndicator} from 'react-native';
-import {getCharactersRequest} from './api/characters';
+import useCharacters from './hooks/useCharacters';
 
 const App: () => React$Node = () => {
-  const [characters, setCharacters] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const {loading, characters} = useCharacters();
 
-  const getCharacters = async () => {
-    try {
-      const response = await getCharactersRequest();
-      setCharacters(response.data.results);
-    } catch (error) {
-      alert('Error al cargar los personajes');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getCharacters();
-  }, [characters]);
   return (
     <SafeAreaView>
       <View style={styles.body}>
