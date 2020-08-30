@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import CharactersList from './src/CharactersList';
+import CharactersList from './CharactersList';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {SafeAreaView, StyleSheet, View, ActivityIndicator} from 'react-native';
-import {getCharactersRequest} from './src/api/characters';
+import {getCharactersRequest} from './api/characters';
 
 const App: () => React$Node = () => {
   const [characters, setCharacters] = useState([]);
