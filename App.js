@@ -1,51 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  FlatList,
-  View,
-  TouchableHighlight,
-  Text,
-  Image,
-} from 'react-native';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import * as axios from 'axios';
+import CharactersList from './src/CharactersList';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 
-const Item = ({
-  id = '',
-  name = '',
-  status = 'Alive',
-  image = '',
-  species = '',
-  onPress = () => alert('pressed'),
-}) => {
-  return (
-    <TouchableHighlight
-      activeOpacity={0.6}
-      underlayColor="#DDDDDD"
-      onPress={() => onPress(id)}>
-      <View style={styles.item}>
-        <Image style={styles.image} source={{uri: image}} />
-        <View style={styles.itemInfo}>
-          <Text style={styles.sectionTitle}>{name}</Text>
-          <Text style={styles.statusText}>{`Estado: ${status}`}</Text>
-          <Text style={styles.statusText}>{`Raza: ${species}`}</Text>
-        </View>
-      </View>
-    </TouchableHighlight>
-  );
-};
-const renderItem = (item, onPress) => (
-  <Item
-    id={item.id}
-    name={item.name}
-    image={item.image}
-    status={item.status}
-    species={item.species}
-    onPress={onPress}
-  />
-);
 const App: () => React$Node = () => {
   const [characters, setCharacters] = useState([]);
 
@@ -62,18 +20,10 @@ const App: () => React$Node = () => {
     getCharacters();
   }, [characters]);
 
-  const selectOfId = (selectedId) => {
-    alert(`Vamos al item de id: ${selectedId}`);
-  };
-
   return (
     <SafeAreaView>
       <View style={styles.body}>
-        <FlatList
-          data={characters}
-          renderItem={({item}) => renderItem(item, selectOfId)}
-          keyExtractor={(item) => item.id.toString()}
-        />
+        <CharactersList characters={characters} />
       </View>
     </SafeAreaView>
   );
@@ -85,39 +35,9 @@ const styles = StyleSheet.create({
     height: '100%',
     paddingTop: 20,
   },
-  item: {
-    backgroundColor: Colors.white,
-    padding: 4,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 8,
-    marginHorizontal: 16,
-    borderTopStartRadius: 50,
-    borderTopEndRadius: 50,
-    borderBottomStartRadius: 50,
-    borderBottomEndRadius: 50,
-  },
-  statusText: {
-    fontSize: 20,
-    color: Colors.dark,
-  },
-  itemInfo: {
-    marginLeft: 20,
-  },
-  image: {
-    height: 100,
-    width: 100,
-    borderRadius: 50,
-  },
   sectionContainer: {
     marginTop: 40,
     paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: Colors.black,
   },
 });
 
