@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-const Item = ({
+const CharacterItem = ({
   id = '',
   name = '',
   status = 'Alive',
@@ -60,4 +60,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Item;
+export default CharacterItem;

@@ -1,11 +1,11 @@
 import React from 'react';
 import {FlatList} from 'react-native';
-import Character from './Character';
+import CharacterItem from './CharacterItem';
 
 const CharactersList = ({characters = []}) => {
   const onPress = (id) => alert(`Abrir id: ${id.toString()}`);
   const renderItem = (item) => (
-    <Character
+    <CharacterItem
       id={item.id}
       name={item.name}
       image={item.image}
