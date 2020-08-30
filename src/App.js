@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import CharactersList from './CharactersList';
+import CharactersList from './components/CharactersList';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {SafeAreaView, StyleSheet, View, ActivityIndicator} from 'react-native';
 import {getCharactersRequest} from './api/characters';
