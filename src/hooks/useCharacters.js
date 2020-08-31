@@ -18,7 +18,7 @@ const useCharacters = () => {
 
   useEffect(() => {
     getCharacters();
-  }, [characters]);
+  }, []);
 
   return {characters, loading};
 };
