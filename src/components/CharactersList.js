@@ -2,8 +2,7 @@ import React from 'react';
 import {FlatList} from 'react-native';
 import CharacterItem from './CharacterItem';
 
-const CharactersList = ({characters = []}) => {
-  const onPress = (id) => alert(`Abrir id: ${id.toString()}`);
+const CharactersList = ({characters = [], onCharacterSelection}) => {
   const renderItem = (item) => (
     <CharacterItem
       id={item.id}
@@ -11,7 +10,7 @@ const CharactersList = ({characters = []}) => {
       image={item.image}
       status={item.status}
       species={item.species}
-      onPress={onPress}
+      onPress={onCharacterSelection}
     />
   );
   return (
