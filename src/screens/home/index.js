@@ -4,15 +4,20 @@ import useCharacters from '../../hooks/useCharacters';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import CharactersList from '../../components/CharactersList';
 
-const Home = () => {
+const HomeScreen = ({navigation}) => {
   const {loading, characters} = useCharacters();
+  const onCharacterSelection = (id) =>
+    navigation.navigate('details', {characterId: id});
   return (
     <SafeAreaView>
       <View style={styles.body}>
         {loading ? (
           <ActivityIndicator size="large" color={Colors.white} />
         ) : (
-          <CharactersList characters={characters} />
+          <CharactersList
+            characters={characters}
+            onCharacterSelection={onCharacterSelection}
+          />
         )}
       </View>
     </SafeAreaView>
@@ -31,4 +36,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default HomeScreen;
