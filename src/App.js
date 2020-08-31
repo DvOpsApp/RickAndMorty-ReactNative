@@ -1,35 +1,19 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import CharactersList from './components/CharactersList';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {SafeAreaView, StyleSheet, View, ActivityIndicator} from 'react-native';
-import useCharacters from './hooks/useCharacters';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import Home from './screens/home';
+
+const Stack = createStackNavigator();
 
 const App: () => React$Node = () => {
-  const {loading, characters} = useCharacters();
-
   return (
-    <SafeAreaView>
-      <View style={styles.body}>
-        {loading ? (
-          <ActivityIndicator size="large" color={Colors.white} />
-        ) : (
-          <CharactersList characters={characters} />
-        )}
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="home">
+        <Stack.Screen name={'home'} component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  body: {
-    backgroundColor: Colors.primary,
-    height: '100%',
-    paddingTop: 20,
-  },
-  sectionContainer: {
-    marginTop: 40,
-    paddingHorizontal: 24,
-  },
-});
 
 export default App;
